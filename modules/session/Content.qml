@@ -23,9 +23,9 @@ Column {
         id: logout
 
         icon: "logout"
-        command: ["loginctl", "terminate-user", ""]
+        command: ["hyprctl", "dispatch", "exit"]
 
-        KeyNavigation.down: shutdown
+        KeyNavigation.down: suspend
 
         Connections {
             target: root.visibilities
@@ -38,18 +38,28 @@ Column {
     }
 
     SessionButton {
+        id: suspend
+
+        icon: "bedtime"
+        command: ["systemctl", "suspend"]
+
+        KeyNavigation.up: logout
+        KeyNavigation.down: shutdown
+    }
+
+    SessionButton {
         id: shutdown
 
         icon: "power_settings_new"
         command: ["systemctl", "poweroff"]
 
-        KeyNavigation.up: logout
-        KeyNavigation.down: hibernate
+        KeyNavigation.up: suspend
+        KeyNavigation.down: reboot
     }
 
-    AnimatedImage {
-        width: Config.session.sizes.button
-        height: Config.session.sizes.button
+    /* AnimatedImage {
+        width: SessionConfig.sizes.button
+        height: SessionConfig.sizes.button
         sourceSize.width: width
         sourceSize.height: height
 
@@ -57,17 +67,7 @@ Column {
         asynchronous: true
         speed: 0.7
         source: "root:/assets/kurukuru.gif"
-    }
-
-    SessionButton {
-        id: hibernate
-
-        icon: "downloading"
-        command: ["systemctl", "hibernate"]
-
-        KeyNavigation.up: shutdown
-        KeyNavigation.down: reboot
-    }
+    } */
 
     SessionButton {
         id: reboot
@@ -75,7 +75,7 @@ Column {
         icon: "cached"
         command: ["systemctl", "reboot"]
 
-        KeyNavigation.up: hibernate
+        KeyNavigation.up: shutdown
     }
 
     component SessionButton: StyledRect {

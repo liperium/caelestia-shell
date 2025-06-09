@@ -13,10 +13,10 @@ JsonObject {
         property bool rounded: true
         property bool activeIndicator: true
         property bool occupiedBg: false
-        property bool showWindows: true
+        property bool showWindows: false
         property bool activeTrail: false
         property string label: "  "
-        property string occupiedLabel: "󰮯 "
-        property string activeLabel: "󰮯 "
+        property string occupiedLabel: ""/* "󰮯 " */
+        property string activeLabel: "" /* "󰮯 " */
     }
 }
