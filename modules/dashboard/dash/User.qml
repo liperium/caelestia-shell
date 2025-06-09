@@ -152,9 +152,10 @@ Row {
                 property string uptime
 
                 running: true
-                command: ["uptime", "-p"]
-                stdout: StdioCollector {
-                    onStreamFinished: uptimeProc.uptime = text.trim()
+
+                command: ["sh", "-c", "uptime | awk '{print $3}' | cut -d ',' -f 1"]
+                stdout: SplitParser {
+                    onRead: data => uptimeProc.uptime = data
                 }
             }
         }
