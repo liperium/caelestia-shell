@@ -1,13 +1,9 @@
-pragma Singleton
-
 import "root:/services"
-import Quickshell
+import Quickshell.Io
 import QtQuick
 
-Singleton {
-    id: root
-
-    readonly property color colour: Colours.palette.m3surface
-    readonly property int thickness: 1 /*Appearance.padding.normal*/
-    readonly property int rounding: Appearance.rounding.small
+JsonObject {
+    property color colour: Colours.palette.m3surface
+    property int thickness: 1 //Appearance.padding.normal
+    property int rounding: Appearance.rounding.small
 }

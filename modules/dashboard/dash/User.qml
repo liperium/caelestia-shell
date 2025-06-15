@@ -10,13 +10,13 @@ Row {
     id: root
 
     padding: Appearance.padding.large
-    spacing: Appearance.spacing.large
+    spacing: Appearance.spacing.normal
 
     StyledClippingRect {
         implicitWidth: info.implicitHeight
         implicitHeight: info.implicitHeight
 
-        radius: Appearance.rounding.full
+        radius: Appearance.rounding.large
         color: Colours.palette.m3surfaceContainerHigh
 
         MaterialIcon {
@@ -68,10 +68,9 @@ Row {
                 property string uptime
 
                 running: true
-                
                 command: ["sh", "-c", "uptime | awk '{print $3}' | cut -d ',' -f 1"]
-                stdout: SplitParser {
-                    onRead: data => uptimeProc.uptime = data
+                stdout: StdioCollector {
+                    onStreamFinished: uptimeProc.uptime = text
                 }
             }
         }
@@ -91,7 +90,7 @@ Row {
             id: icon
 
             anchors.left: parent.left
-            anchors.leftMargin: (DashboardConfig.sizes.infoIconSize - implicitWidth) / 2
+            anchors.leftMargin: (Config.dashboard.sizes.infoIconSize - implicitWidth) / 2
 
             text: line.icon
             color: line.colour
@@ -110,7 +109,7 @@ Row {
             text: `:  ${line.text}`
             font.pointSize: Appearance.font.size.normal
 
-            width: DashboardConfig.sizes.infoWidth
+            width: Config.dashboard.sizes.infoWidth
             elide: Text.ElideRight
         }
     }

@@ -1,3 +1,5 @@
+pragma ComponentBehavior: Bound
+
 import "root:/widgets"
 import "root:/services"
 import "root:/config"
