@@ -1,17 +1,9 @@
 import Quickshell.Io
 
-import Quickshell
-import QtQuick
-
-Singleton {
-    id: root
-
-    readonly property Sizes sizes: Sizes {}
-    readonly property Workspaces workspaces: Workspaces {}
-
-    component Sizes: QtObject {
-        property int innerHeight: 32
-        property int windowPreviewSize: 300
+JsonObject {
+    property JsonObject sizes: JsonObject {
+        property int innerHeight: 30
+        property int windowPreviewSize: 400
         property int trayMenuWidth: 300
         property int batteryWidth: 250
     }
@@ -24,7 +16,7 @@ Singleton {
         property bool showWindows: false
         property bool activeTrail: false
         property string label: "  "
-        property string occupiedLabel: ""/* "󰮯 " */
-        property string activeLabel: "" /* "󰮯 " */
+        property string occupiedLabel: ""
+        property string activeLabel: ""
     }
 }
