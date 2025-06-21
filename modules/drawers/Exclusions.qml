@@ -15,6 +15,7 @@ Scope {
         anchors.left: true
         exclusiveZone: root.bar.implicitWidth
     }
+    /*
 
     ExclusionZone {
         anchors.top: true
@@ -26,7 +27,7 @@ Scope {
 
     ExclusionZone {
         anchors.bottom: true
-    }
+    } */
 
     component ExclusionZone: StyledWindow {
         screen: root.screen

@@ -20,30 +20,12 @@ Column {
     spacing: Appearance.spacing.large
 
     SessionButton {
-        id: logout
-
-        icon: "logout"
-        command: ["hyprctl", "dispatch", "exit"]
-
-        KeyNavigation.down: suspend
-
-        Connections {
-            target: root.visibilities
-
-            function onSessionChanged(): void {
-                if (root.visibilities.session)
-                    logout.focus = true;
-            }
-        }
-    }
-
-    SessionButton {
         id: suspend
 
         icon: "bedtime"
         command: ["systemctl", "suspend"]
 
-        KeyNavigation.up: logout
+        KeyNavigation.up: reboot
         KeyNavigation.down: shutdown
     }
 
@@ -54,7 +36,25 @@ Column {
         command: ["systemctl", "poweroff"]
 
         KeyNavigation.up: suspend
+        KeyNavigation.down: logout
+    }
+    SessionButton {
+        id: logout
+
+        icon: "logout"
+        command: ["hyprctl", "dispatch", "exit"]
+
+        KeyNavigation.up: shutdown
         KeyNavigation.down: reboot
+
+        Connections {
+            target: root.visibilities
+
+            function onSessionChanged(): void {
+                if (root.visibilities.session)
+                    shutdown.focus = true;
+            }
+        }
     }
 
     /* AnimatedImage {
@@ -75,7 +75,8 @@ Column {
         icon: "cached"
         command: ["systemctl", "reboot"]
 
-        KeyNavigation.up: shutdown
+        KeyNavigation.up: logout
+        KeyNavigation.down: suspend
     }
 
     component SessionButton: StyledRect {
