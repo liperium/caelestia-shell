@@ -28,7 +28,6 @@ Column {
         KeyNavigation.up: reboot
         KeyNavigation.down: shutdown
     }
-
     SessionButton {
         id: shutdown
 
